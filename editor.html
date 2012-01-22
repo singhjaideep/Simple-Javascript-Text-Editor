@@ -1,0 +1,61 @@
+<html>
+<head>
+    <script type="text/javascript" src="jscolor/jscolor.js"></script>
+</head>
+<body onLoad="txtboxload()">
+<div style="width:auto; margin-bottom:10px;">
+<input type="button" id="bold" style="height:21px; width:auto; font-weight:bold;" value="Bold" onClick="fontEdit('bold')" />
+<input type="button" id="italic" style="height:21px; width:auto; font-style:italic;" value="Italic" onClick="fontEdit('italic')" />
+<input type="button" id="underline" style="height:21px; width:auto; text-decoration:underline;" value="Underline" onClick="fontEdit('underline')" /> |
+<input type="button" style="height:21px; width:auto;"value="Left" onClick="fontEdit('justifyleft')" title="align left" />
+<input type="button" style="height:21px; width:auto;"value="Center" onClick="fontEdit('justifycenter')" title="center" />
+<input type="button" style="height:21px; width:auto;"value="Right" onClick="fontEdit('justifyright')" title="align right" /> |
+<select id="fonts" onChange="fontEdit('fontName',this[this.selectedIndex].value)">
+   <option value="Arial">Arial</option>
+   <option value="Comic Sans MS">Comic Sans MS</option>
+   <option value="Courier New">Courier New</option>
+   <option value="Monotype Corsiva">Monotype</option>
+   <option value="Tahoma">Tahoma</option>
+   <option value="Times">Times</option>
+</select>
+<select id="size" onChange="fontEdit('fontSize',this[this.selectedIndex].value)">
+   <option value="1">1</option>
+   <option value="2">2</option>
+   <option value="3">3</option>
+   <option value="4">4</option>
+   <option value="5">5</option>
+   <option value="6">6</option>
+   <option value="7">7</option>
+</select> |
+Color: <input class="color {hash:true}" value="000000" onChange="fontEdit('foreColor','#'+this.color)" />
+</div>
+<br>
+<script type="text/javascript">
+<!--
+//Creates a new iframe with id "textEditor"
+function txtboxload()
+{
+    var textbox = document.createElement("iframe");
+    textbox.name = textbox.id = "textEditor";
+    textbox.style = "height:21px; width:21px;";
+    if (textbox.addEventListener){
+        textbox.addEventListener("load",function(e){this.contentWindow.document.designMode = "on";}, false);
+    } else if (textbox.attachEvent){
+        textbox.attachEvent("load", function(e){this.contentWindow.document.designMode = "on";});
+    }
+    document.body.appendChild(textbox);
+    textEditor.document.designMode="on";
+    textEditor.document.open();
+    textEditor.document.write('<head><style type="text/css">body{font-family:arial; font-size:13px; margin:}</style> </head>');
+    textEditor.document.close();
+    textEditor.focus();
+}
+function fontEdit(x,y)
+{
+    textEditor.document.execCommand(x,"",y);
+    textEditor.focus();
+    }
+-->
+</script>
+</body>
+</html>
